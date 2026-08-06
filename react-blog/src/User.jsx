@@ -1,7 +1,9 @@
-const User = () => {
+import React from 'react';
+
+const User = ({ name='New User' }) => {
   return (
     <div>
-      <h1>Anil Sidhu</h1>
+      <h1>Hi, {name}</h1>
     </div>
   );
 };
