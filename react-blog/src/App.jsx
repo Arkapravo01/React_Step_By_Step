@@ -1,21 +1,37 @@
-import Wrapper from './Wrapper';
+import { useState } from 'react';
+import Skills from './Skills';
 
 const App = () => {
+  const [skills, setSkills] = useState([]);
+  const handleSkills = (event) => {
+    console.log(event.target.value, event.target.checked);
+    if (event.target.checked) {
+      setSkills([...skills, event.target.value]);
+    } else {
+      setSkills([...skills.filter((item) => item != event.target.value)]);
+    }
+  };
   return (
     <div>
-      <h1>Pass JSX with props</h1>
-      <Wrapper color={"orange"}>
-        <h1>Hello Everyone</h1>
-      </Wrapper>
-      <Wrapper color='blue'>
-        <h1>Hello Anil</h1>
-      </Wrapper>
-      <Wrapper>
-        <h1>Hello Admin</h1>
-      </Wrapper>
-      <Wrapper>
-        <h2 style={{ color: 'red' }}>Hello Admin, please login</h2>
-      </Wrapper>
+      <Skills />
+
+      <h1>Handle Checkbox in React Js</h1>
+      <input onChange={handleSkills} type='checkbox' id='php' value='php' />
+      <label htmlFor='php'>PHP</label>
+      <br />
+      <br />
+      <input onChange={handleSkills} type='checkbox' id='JS' value='JS' />
+      <label htmlFor='JS'>JS</label>
+      <br />
+      <br />
+      <input onChange={handleSkills} type='checkbox' id='node' value='node' />
+      <label htmlFor='node'>Node</label>
+      <br />
+      <br />
+      <input onChange={handleSkills} type='checkbox' id='java' value='java' />
+      <label htmlFor='java'>Java</label>
+
+      <h1>{skills.toString()}</h1>
     </div>
   );
 };
