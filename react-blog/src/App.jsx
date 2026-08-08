@@ -1,40 +1,80 @@
-import User from './User';
+import React from 'react';
+import College from './College';
 
 const App = () => {
-  const userData = [
+  const collegeData = [
     {
-      name: 'Anil',
-      age: 29,
-      email: 'anil@test.com',
-      id: 1,
+      name: 'IET Alwar',
+      city: 'Alwar',
+      website: 'www.iet.com',
+      student: [
+        {
+          name: 'Anil Sidhu',
+          age: '29',
+          email: 'anil@test.com',
+        },
+        {
+          name: 'Peter',
+          age: '20',
+          email: 'peter@test.com',
+        },
+        {
+          name: 'Bruce',
+          age: '25',
+          email: 'bruce@test.com',
+        },
+      ],
     },
     {
-      name: 'Sam',
-      age: 34,
-      email: 'sam@test.com',
-      id: 2,
+      name: 'IIT Delhi',
+      city: 'Delhi',
+      website: 'www.iit.com',
+      student: [
+        {
+          name: 'Anil Sidhu',
+          age: '29',
+          email: 'anil@test.com',
+        },
+        {
+          name: 'Peter',
+          age: '20',
+          email: 'peter@test.com',
+        },
+        {
+          name: 'Bruce',
+          age: '25',
+          email: 'bruce@test.com',
+        },
+      ],
     },
     {
-      name: 'Peter',
-      age: 20,
-      email: 'peter@test.com',
-      id: 3,
-    },
-    {
-      name: 'Bruce',
-      age: 50,
-      email: 'bruce@test.com',
-      id: 4,
+      name: 'KCIET Hisar',
+      city: 'Hisar',
+      website: 'www.kciet.com',
+      student: [
+        {
+          name: 'Anil Sidhu',
+          age: '29',
+          email: 'anil@test.com',
+        },
+        {
+          name: 'Peter',
+          age: '20',
+          email: 'peter@test.com',
+        },
+        {
+          name: 'Bruce',
+          age: '25',
+          email: 'bruce@test.com',
+        },
+      ],
     },
   ];
-
   return (
     <div>
-      <h1>Reuse component in loop</h1>
-      {userData.map((user) => (
-        <div key={user.id}>
-          <User data={user} />
-        </div>
+      {/* <h1>Nested Looping with Component</h1> */}
+      {collegeData.map((college, index) => (
+        <College college={college} />
       ))}
     </div>
   );
