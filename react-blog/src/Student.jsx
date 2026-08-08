@@ -8,7 +8,7 @@ const Student = ({ student }) => {
         <ul>
           <li>Name:{student.name}</li>
         </ul>
-      ))}
+      ))}  
     </div>
   );
 };
