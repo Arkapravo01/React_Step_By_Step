@@ -1,21 +1,17 @@
-import User from './User';
+import CustomerForm from './CustomerForm';
 
 const App = () => {
-  const displayName = (name) => {
-    alert(name);
-  };
-
-  const getUser = () => {
-    alert('get user function called');
+  const handleSubmit = async () => {
+    await new Promise((res) => setTimeout(res, 2000));
+    console.log('Submit');
   };
 
   return (
     <div>
-      <h1>Call Parent Component Function from Child Component </h1>
-      <User displayName={displayName} name='Arka' onClick={getUser} />
-      <User displayName={displayName} name='Anil' onClick={getUser} />
-      <User displayName={displayName} name='Sam' onClick={getUser} />
-      <User displayName={displayName} name='Bruce' onClick={getUser} />
+      <h1>useFormStatus Hook in React Js 19</h1>
+      <form action={handleSubmit}>
+        <CustomerForm />
+      </form>
     </div>
   );
 };
