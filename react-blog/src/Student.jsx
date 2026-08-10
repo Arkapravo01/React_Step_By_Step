@@ -1,14 +1,11 @@
 import React from 'react';
+import Subject from './Subject';
 
-const Student = ({ student }) => {
+const Student = () => {
   return (
-    <div>
-      <h3>Students:</h3>
-      {student.map((student) => (
-        <ul>
-          <li>Name:{student.name}</li>
-        </ul>
-      ))}  
+    <div style={{ backgroundColor: 'green', padding: '10px' }}>
+      <h1>Student Component</h1>
+      <Subject />
     </div>
   );
 };
