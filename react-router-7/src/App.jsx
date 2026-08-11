@@ -1,17 +1,17 @@
 import { Link, Route, Routes } from 'react-router';
-import Home from './Home';
-import About from './About';
+import About from './About.jsx';
+import Home from './Home.jsx';
+import Login from './Login.jsx';
+import NavBar from './NavBar.jsx';
 
 const App = () => {
   return (
     <>
-      <Link to=''>Home</Link>
-      <br />
-      <Link to='/about'>About</Link>
-
+      <NavBar />
       <Routes>
-        <Route path='' element={<Home />} />
+        <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </>
   );
