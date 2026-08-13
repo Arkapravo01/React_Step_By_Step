@@ -75,12 +75,12 @@ const NavBar = () => {
                 }
                 to='/users/list'
               >
-                List
+                List 
               </NavLink>
             </li>
           </ul>
         </div>
-      </div>
+      </div>  
 
       <Outlet />
     </div>
