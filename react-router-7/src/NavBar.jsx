@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router';
+import { Link, NavLink, Outlet } from 'react-router';
 import './header.css';
 
 const NavBar = () => {
@@ -10,31 +10,78 @@ const NavBar = () => {
             <h2>Logo</h2>
           </Link>
         </div>
+
         <div>
           <ul>
             <li>
-              <Link className='link' to='/'>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'link custom-active' : 'link'
+                }
+                to='/'
+              >
                 Home
-              </Link>
+              </NavLink>
             </li>
+
             <li>
-              <Link className='link' to='/login'>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'link custom-active' : 'link'
+                }
+                to='/in/user/login'
+              >
                 Login
-              </Link>
+              </NavLink>
             </li>
+
             <li>
-              <Link className='link' to='/about'>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'link custom-active' : 'link'
+                }
+                to='/in/user/about'
+              >
                 About
-              </Link>
+              </NavLink>
             </li>
+
             <li>
-              <Link className='link' to='/college'>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'link custom-active' : 'link'
+                }
+                to='/college'
+              >
                 College
-              </Link>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'link custom-active' : 'link'
+                }
+                to='/users'
+              >
+                Users
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'link custom-active' : 'link'
+                }
+                to='/users/list'
+              >
+                List
+              </NavLink>
             </li>
           </ul>
         </div>
       </div>
+
       <Outlet />
     </div>
   );
