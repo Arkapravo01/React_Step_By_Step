@@ -1,33 +1,57 @@
-import { Link } from 'react-router';
+import { useEffect, useState } from 'react';
+import './App.css';
 
 const UserList = () => {
-  const userData = [
-    { id: 1, name: 'Anil' },
-    { id: 2, name: 'Sam' },
-    { id: 3, name: 'Briuce' },
-    { id: 4, name: 'Arka' },
-    { id: 5, name: 'Peter' },
-    { id: 6, name: 'Tony' },
-  ];
-  return (
-    <div style={{ marginLeft: '20px' }}>
-      <h1>User List Page</h1>
-      {userData.map((user) => (
-        <div>
-          <h4>
-            <Link to={'/users/' + user.id}>{user.name}</Link>
-          </h4>
-        </div>
-      ))}
+  const url = 'http://localhost:3000/users';
 
-      <h1>User List Page with Name in URL</h1>
-      {userData.map((user) => (
-        <div>
-          <h4>
-            <Link to={'/users/' + user.id + '/' + user.name}>{user.name}</Link>
-          </h4>
-        </div>
-      ))}
+  const [userData, setUserData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const getUserData = async () => {
+    let response = await fetch(url);
+    response = await response.json();
+    setUserData(response);
+    setLoading(false);
+  };
+
+  const deleteUser = async (id) => {
+    let response = await fetch(url + '/' + id, {
+      method: 'Delete',
+    });
+    response = await response.json();
+    if (response) {
+      alert('User Deleted');
+      getUserData();
+    }
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    getUserData();
+  }, []);
+
+  return (
+    <div>
+      <ul className='user-list  user-list-head'>
+        <li>Name</li>
+        <li>Age</li>
+        <li>Email ID</li>
+        <li>Action</li>
+      </ul>
+      {!loading ? (
+        userData.map((user) => (
+          <ul key={user.name} className='user-list'>
+            <li>{user.name}</li>
+            <li>{user.age}</li>
+            <li>{user.email}</li>
+            <li>
+              <button onClick={() => deleteUser(user.id)}>Delete</button>
+            </li>
+          </ul>
+        ))
+      ) : (
+        <h1>Data Loading....</h1>
+      )}
     </div>
   );
 };
