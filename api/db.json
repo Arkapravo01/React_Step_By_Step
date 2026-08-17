@@ -7,10 +7,10 @@
       "email": "anil@test.com"
     },
     {
-      "id": 2,
       "name": "Sam",
-      "age": 34,
-      "email": "sam@test.com"
+      "age": "25",
+      "email": "sam@testmail.com",
+      "id": 2
     },
     {
       "id": 3,
@@ -19,16 +19,10 @@
       "email": "peter@test.com"
     },
     {
-      "id": 4,
-      "name": "Bruce",
-      "age": 45,
-      "email": "bruce@test.com"
-    },
-    {
-      "id": 5,
       "name": "Tony",
-      "age": 31,
-      "email": "tony@test.com"
+      "age": "45",
+      "email": "tony@test.com",
+      "id": 4
     }
   ]
 }

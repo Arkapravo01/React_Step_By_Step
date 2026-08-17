@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import { useNavigate } from 'react-router';
 
 const UserList = () => {
   const url = 'http://localhost:3000/users';
 
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const getUserData = async () => {
     let response = await fetch(url);
@@ -23,6 +25,10 @@ const UserList = () => {
       alert('User Deleted');
       getUserData();
     }
+  };
+
+  const editUser = (id) => {
+    navigate('/edit/' + id);
   };
 
   useEffect(() => {
@@ -46,6 +52,7 @@ const UserList = () => {
             <li>{user.email}</li>
             <li>
               <button onClick={() => deleteUser(user.id)}>Delete</button>
+              <button onClick={() => editUser(user.id)}>Edit</button>
             </li>
           </ul>
         ))
