@@ -1,59 +1,36 @@
-import { useActionState } from 'react';
+import { use, Suspense } from 'react';
+
+const fetchData = () =>
+  fetch('https://dummyjson.com/users').then((response) => response.json());
+
+const userResource = fetchData();
 
 const App = () => {
-  const handleLogin = (prevData, formData) => {
-    let name = formData.get('name');
-    let password = formData.get('password');
-    let regex = /^[A-Z0-9]+$/i;
-
-    if (!name || name.length > 5) {
-      return {
-        error:
-          'Name cannot be empty or Name should not contain more than 5 characters',
-        name,
-        password,
-      };
-    } else if (!regex.test(password)) {
-      return {
-        error: 'Password can contain only numbers and alphabets ',
-        name,
-        password,
-      };
-    } else {
-      return { message: 'Login done', name, password };
-    }
-  };
-
-  const [data, action, pending] = useActionState(handleLogin);
-
   return (
     <div>
-      <h1>Validation with useActionState in React</h1>
-
-      {data?.message && <span style={{ color: 'green' }}>{data.message}</span>}
-      {data?.error && <span style={{ color: 'red' }}>{data.error}</span>}
-
-      <form action={action}>
-        <input
-          defaultValue={data?.name}
-          name='name'
-          type='text'
-          placeholder='Enter User Name'
-        />
-        <br />
-        <br />
-        <input
-          defaultValue={data?.password}
-          name='password'
-          type='text'
-          placeholder='Enter User Password'
-        />
-        <br />
-        <br />
-        <button disabled={data?.error}>Login</button>
-      </form>
+      <h1>useApi in React Js</h1>
+      <Suspense fallback={<p>Loading....</p>}>
+        <Users />
+      </Suspense>
     </div>
   );
 };
 
 export default App;
+
+const Users = () => {
+  const userData = use(userResource);
+  console.log(userData.users);
+
+  return (
+    <div>
+      <h1>Users List</h1>
+      {userData?.users?.map((user) => (
+        <ul>
+          <li>{user.firstName}</li>
+          <li style={{ listStyle: 'none' }}>{user.lastName}</li>
+        </ul>
+      ))}
+    </div>
+  );
+};
